@@ -15,6 +15,7 @@ import {
   Mountain,
   Home as HomeIcon,
   Info,
+  Gamepad2,
 } from 'lucide-react';
 import type { PageId } from '../shared';
 import { useApp } from '../AppContext';
@@ -31,6 +32,7 @@ const CARD_ICONS: Record<string, { icon: typeof HomeIcon; color: string }> = {
   transport: { icon: Bus, color: 'text-indigo-500' },
   emergency: { icon: Siren, color: 'text-red-500' },
   geography: { icon: Mountain, color: 'text-teal-500' },
+  'anime-adventure': { icon: Gamepad2, color: 'text-pink-500' },
   about: { icon: Info, color: 'text-zinc-400' },
 };
 
@@ -44,7 +46,6 @@ export function HomeSection({ onNavigate }: { onNavigate: (p: PageId | 'about') 
 
   return (
     <div className="px-4 py-4">
-      {/* Hero */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -91,7 +92,6 @@ export function HomeSection({ onNavigate }: { onNavigate: (p: PageId | 'about') 
         </div>
       </motion.div>
 
-      {/* Grid */}
       <div className="grid grid-cols-2 gap-3">
         {visibleCards.map((card, i) => {
           const cfg = CARD_ICONS[card.id] || CARD_ICONS.about;

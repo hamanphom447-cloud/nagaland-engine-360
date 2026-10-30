@@ -17,6 +17,7 @@ import { RecipesSection } from '@/components/sections/RecipesSection';
 import { TransportSection } from '@/components/sections/TransportSection';
 import { EmergencySection } from '@/components/sections/EmergencySection';
 import { GeographySection } from '@/components/sections/GeographySection';
+import { AvatarSceneSection } from '@/components/sections/AvatarSceneSection';
 import { MoreSection } from '@/components/sections/MoreSection';
 import { EditProfilePage, FavoritesPage } from '@/components/sections/DrawerPages';
 import { ListingsPage, EditHomePage, ChangeLogoPage, LanguagePage } from '@/components/sections/DrawerPages2';
@@ -32,7 +33,6 @@ function AppContent() {
   const [search, setSearch] = useState('');
   const [drawerOpen, setDrawerOpen] = useState(false);
   const { unreadCount, addToHistory, homeCards } = useApp();
-  const swipeZoneRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number | null>(null);
 
   const searchResults = useMemo(() => {
@@ -53,11 +53,19 @@ function AppContent() {
     navigate(p);
   }
 
+  function isGestureSafeTouch(e: TouchEvent) {
+    const target = e.target as HTMLElement | null;
+    return !target?.closest('[data-gesture-skip="true"]');
+  }
+
   useEffect(() => {
     function handleTouchStart(e: TouchEvent) {
+      if (!isGestureSafeTouch(e)) return;
       touchStartX.current = e.touches[0].clientX;
     }
+
     function handleTouchMove(e: TouchEvent) {
+      if (!isGestureSafeTouch(e)) return;
       if (touchStartX.current !== null && !drawerOpen) {
         const delta = e.touches[0].clientX - touchStartX.current;
         if (touchStartX.current < 30 && delta > 60) {
@@ -66,6 +74,7 @@ function AppContent() {
         }
       }
     }
+
     document.addEventListener('touchstart', handleTouchStart, { passive: true });
     document.addEventListener('touchmove', handleTouchMove, { passive: true });
     return () => {
@@ -88,6 +97,7 @@ function AppContent() {
       case 'transport': return <TransportSection />;
       case 'emergency': return <EmergencySection />;
       case 'geography': return <GeographySection />;
+      case 'anime-adventure': return <AvatarSceneSection />;
       case 'more': return <MoreSection onNavigate={navigate as any} />;
       case 'edit-profile': return <EditProfilePage />;
       case 'favorites': return <FavoritesPage />;

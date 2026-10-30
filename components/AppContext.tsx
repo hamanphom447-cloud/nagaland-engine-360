@@ -135,7 +135,8 @@ const DEFAULT_HOME_CARDS: HomeCardConfig[] = [
   { id: 'transport', label: 'Transport', desc: 'NST, Train, Taxi', visible: true, order: 8 },
   { id: 'emergency', label: 'Emergency', desc: 'SOS & Helplines', visible: true, order: 9 },
   { id: 'geography', label: 'Geography', desc: 'Land & Nature', visible: true, order: 10 },
-  { id: 'about', label: 'About', desc: 'App info', visible: true, order: 11 },
+  { id: 'anime-adventure', label: 'Anime Adventure', desc: '3D scene test', visible: true, order: 11 },
+  { id: 'about', label: 'About', desc: 'App info', visible: true, order: 12 },
 ];
 
 const DEFAULT_SETTINGS: AppSettings = {
@@ -281,7 +282,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setDownloadedItems([]);
   }, []);
 
-  // Load user and app state from localStorage on mount
   useEffect(() => {
     try {
       const userRaw = localStorage.getItem('ne360-user');

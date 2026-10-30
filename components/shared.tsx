@@ -15,6 +15,7 @@ export type PageId =
   | 'transport'
   | 'emergency'
   | 'geography'
+  | 'anime-adventure'
   | 'social';
 
 export const ALL_PAGES: { id: PageId; label: string }[] = [
@@ -30,6 +31,7 @@ export const ALL_PAGES: { id: PageId; label: string }[] = [
   { id: 'transport', label: 'Transport' },
   { id: 'emergency', label: 'Emergency' },
   { id: 'geography', label: 'Geography' },
+  { id: 'anime-adventure', label: 'Anime Adventure' },
   { id: 'social', label: 'Social & Earn' },
 ];
 
@@ -82,7 +84,6 @@ export function Header({
   return (
     <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b border-red-900/40">
       <div className="flex items-center justify-between px-3 py-2.5 gap-2">
-        {/* Hamburger */}
         <button
           onClick={onMenuClick}
           className="w-9 h-9 rounded-lg flex items-center justify-center text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors shrink-0 relative"
@@ -90,7 +91,6 @@ export function Header({
           <Menu className="w-5 h-5" />
         </button>
 
-        {/* Logo + title */}
         <button onClick={onLogoClick} className="flex items-center gap-2 shrink-0">
           <Logo size="sm" />
           <div className="text-left hidden sm:block">
@@ -106,7 +106,6 @@ export function Header({
           </div>
         </button>
 
-        {/* Search */}
         <div className="flex-1 max-w-[180px] sm:max-w-xs">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
